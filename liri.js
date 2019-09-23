@@ -15,9 +15,9 @@ console.log(keys);
 
 var spotify = new spotify(keys.spotify);
 
-// var omdb = omdb(keys.omdb);
+// var omdb = new omdb(keys.omdb);
 
-// var bands = BIT(keys.bandsintown);
+// var bands = new BIT(keys.bandsintown);
 
 
 var inputString = process.argv;
@@ -25,19 +25,105 @@ var inputString = process.argv;
 var userChoice = inputString[2];
 var userInput = inputString[3];
 
-// OMDB:
+switch (userChoice) {
+    case "movie-this":
+        movieThis(userInput);
+        break;
+
+    case "spotify-this":
+        spotifyThis(userInput);
+        break;
+
+    case "concert-this":
+        concertThis(userInput);
+        break;
+
+    case "would-you-like-to":
+        fs.readFile("random.txt", "utf8", function (error, data) {
+            if (error) {
+                return console.log(error);
+            }
+            console.log(data);
+            var dataArr = data.split(",");
+            console.log(dataArr);
+        });
+        spotifyThis(random.txt);
+        break;
+}
+
+function concertThis() {
+
+    var bandName = "";
+
+    var queryUrl = bands + bandName;
+
+    // This line is just to help us debug against the actual URL.
+    console.log(queryUrl);
+
+    axios.get(queryUrl)
+        .then(function (response) {
+            console.log("Venue: " + response.data.VenueData.name);
+            console.log("Location: " + response.data.city);
+            console.log("Date of Concert: " + moment(response.data.datetime).format('L'));
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log("---------------Data---------------");
+                console.log(error.response.data);
+                console.log("---------------Status---------------");
+                console.log(error.response.status);
+                console.log("---------------Status---------------");
+                console.log(error.response.headers);
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        });
+};
+
+function spotifyThis() {
+
+    var songName = "";
+
+    // Then run a request with axios to the OMDB API with the movie specified
+    var queryUrl = spotify + songName;
+
+    // This line is just to help us debug against the actual URL.
+    console.log(queryUrl);
+
+    axios.get(queryUrl)
+        .then(function (response) {
+            console.log("Artist: " + response.data.artist);
+            console.log("Song Name: " + response.data.name);
+            console.log("Preview Link: " + response.data.preview_url);
+            console.log("Album: " + response.data.album);
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log("---------------Data---------------");
+                console.log(error.response.data);
+                console.log("---------------Status---------------");
+                console.log(error.response.status);
+                console.log("---------------Status---------------");
+                console.log(error.response.headers);
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        });
+};
+
 function movieThis() {
-
-    // Store all of the arguments in an array
-    var movieThis = process.argv[2];
-    var userInput = process.argv[3];
-
     // Create an empty variable for holding the movie name
     var movieName = "";
 
     // Loop through all the words in the node argument
     // And do a little for-loop magic to handle the inclusion of "+"s
-    for (var i = 3; i <  .length; i++) {
+    for (var i = 3; i < userInput.length; i++) {
 
         if (i > 3 && i < userInput.length) {
             movieName = movieName + "+" + userInput[i];
@@ -81,139 +167,29 @@ function movieThis() {
         });
 };
 
-movieThis(movieThis);
-
-// SPOTIFY
-function spotifyThis() {
-
-    // Store all of the arguments in an array
-    var spotifyThis = process.argv[2];
-    var userInput = process.argv[3];
-
-    // Create an empty variable for holding the movie name
-    var songName = "";
-
-    // Loop through all the words in the node argument
-    // And do a little for-loop magic to handle the inclusion of "+"s
-    for (var i = 3; i < userInput.length; i++) {
-
-        if (i > 3 && i < userInput.length) {
-            songName = songName + "+" + userInput[i];
-        } else {
-            songName += userInput[i];
-
-        }
-    }
-
-    // Then run a request with axios to the OMDB API with the movie specified
-    var queryUrl = spotify + songName;
-
-    // This line is just to help us debug against the actual URL.
-    console.log(queryUrl);
-
-    axios.get(queryUrl)
-        .then(function (response) {
-            console.log("Artist: " + response.data.artist);
-            console.log("Song Name: " + response.data.name);
-            console.log("Preview Link: " + response.data.preview_url);
-            console.log("Album: " + response.data.album);
-        })
-        .catch(function (error) {
-            if (error.response) {
-                console.log("---------------Data---------------");
-                console.log(error.response.data);
-                console.log("---------------Status---------------");
-                console.log(error.response.status);
-                console.log("---------------Status---------------");
-                console.log(error.response.headers);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log("Error", error.message);
-            }
-            console.log(error.config);
-        });
-};
-
-spotifyThis(spotifyThis);
 
 
-// BANDS IN TOWN
-function concertThis() {
-
-    // Store all of the arguments in an array
-    var concertThis = process.argv[2];
-    var userInput = process.argv[3];
-
-    // Create an empty variable for holding the movie name
-    var bandName = "";
-
-    // Loop through all the words in the node argument
-    // And do a little for-loop magic to handle the inclusion of "+"s
-    for (var i = 3; i < userInput.length; i++) {
-
-        if (i > 3 && i < userInput.length) {
-            bandName = bandName + "+" + userInput[i];
-        } else {
-            bandName += userInput[i];
-
-        }
-    }
-
-    // Then run a request with axios to the OMDB API with the movie specified
-    var queryUrl = bands + bandName;
-
-    // This line is just to help us debug against the actual URL.
-    console.log(queryUrl);
-
-    axios.get(queryUrl)
-        .then(function (response) {
-            console.log("Venue: " + response.data.VenueData.name);
-            console.log("Location: " + response.data.city);
-            console.log("Date of Concert: " + moment(response.data.datetime).format('L'));
-        })
-        .catch(function (error) {
-            if (error.response) {
-                console.log("---------------Data---------------");
-                console.log(error.response.data);
-                console.log("---------------Status---------------");
-                console.log(error.response.status);
-                console.log("---------------Status---------------");
-                console.log(error.response.headers);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log("Error", error.message);
-            }
-            console.log(error.config);
-        });
-};
-
-concertThis(concertThis);
 
 
-// BONUS OUTPUTTING THE DATA BY APPENDING EACH COMMAND
 
-fs.readFile("log.txt", "utf8", function (err, data) {
-    // If there's an error reading the file, we log it and return immediately
+
+
+
+
+
+// Inside of the readFile callback, we use the appendFile function
+// The first parameter is the name of the text file to save to
+// The second parameter is the data we want to write as a string
+// The third parameter is the callback function to be called when appendFile is finished
+// For more info, see the docs: https://nodejs.org/api/fs.html#fs_fs_appendfile_path_data_options_callback
+fs.appendFile("log.txt", "command", function (err) {
+    // If there was an error, we log it and return immediately
     if (err) {
         return console.log(err);
     }
 
-    // Inside of the readFile callback, we use the appendFile function
-    // The first parameter is the name of the text file to save to
-    // The second parameter is the data we want to write as a string
-    // The third parameter is the callback function to be called when appendFile is finished
-    // For more info, see the docs: https://nodejs.org/api/fs.html#fs_fs_appendfile_path_data_options_callback
-    fs.appendFile("log.txt", "command", function (err) {
-        // If there was an error, we log it and return immediately
-        if (err) {
-            return console.log(err);
-        }
+    // log that we saved the info successfully. we know that
+    // because no error was encountered, or we would have returned above
+    console.log("SAVED");
 
-        // log that we saved the info successfully. we know that
-        // because no error was encountered, or we would have returned above
-        console.log("SAVED");
-
-    });
 });
