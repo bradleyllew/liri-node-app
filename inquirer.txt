@@ -1,0 +1,90 @@
+var inquirer = require('inquirer');
+
+// INQUIRER
+inquirer.prompt([
+
+    {
+        type: "list",
+        name: "wouldYouLikeTo",
+        message: "What would you like Liri to do?",
+        choices: ["concert-this", "spotify-this", "movie-this", "do-what-it-says"]
+    }
+
+]).then(function (user) {
+
+    // If the user chooses concert-this...
+    if (user.wouldYouLikeTo === "concert-this") {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "whatConcert",
+                message: "What concert would you like to see?"
+            }
+        ])
+        console.log("==============================================");
+        console.log("");
+        
+        console.log("");
+        console.log("==============================================");
+        concertThis(user.whatConcert);
+    }
+    // If user chooses spotify-this...
+    if (user.wouldYouLikeTo === "spotify-this") {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "whatSong",
+                message: "What song would you like to find?"
+            }
+        ])
+        console.log("==============================================");
+        console.log("");
+        
+        console.log("");
+        console.log("==============================================");
+        spotifyThis(whatSong);
+    }
+    // If user chooses movie-this...
+    if (user.wouldYouLikeTo === "movie-this") {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "whatMovie",
+                message: "What movie would you like to find?"
+            }
+        ])
+        console.log("==============================================");
+        console.log("");
+        
+        console.log("");
+        console.log("==============================================");
+        movieThis(whatMovie);
+    } else {
+        // If user doesn't enter a movie name...
+        console.log("==============================================");
+        console.log("");
+        console.log("If you haven't watched 'Mr. Nobody,' then you should!");
+        console.log("It's on Netflix!");
+        console.log("");
+        console.log("==============================================");
+        movieThis("http://www.imdb.com/title/tt0485947/");
+    }
+    // If user chooses would-you-like-to
+    if (user.wouldYouLikeTo === "do-what-it-says") {
+
+        fs.readFile("random.txt", "utf8", function (error, data) {
+            if (error) {
+                return console.log(error);
+            }
+            console.log(data);
+            var dataArr = data.split(",");
+            console.log(dataArr);
+        });
+        console.log("==============================================");
+        console.log("");
+        console.log("Well let's do it then!");
+        console.log("");
+        console.log("==============================================");
+    }
+    spotifyThis(random.txt);
+});

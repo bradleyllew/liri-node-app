@@ -2,121 +2,47 @@ require("dotenv").config();
 
 var fs = require("fs");
 
-var inquirer = require('inquirer');
+// var inquirer = require('inquirer');
 
 var axios = require("axios");
 
 var moment = require('moment');
+
+var spotify = require('node-spotify-api');
 
 var keys = require("./keys.js");
 console.log(keys);
 
 var spotify = new spotify(keys.spotify);
 
-var omdb = new omdb(keys.omdb);
+// var omdb = omdb(keys.omdb);
 
-var bands = new BIT(keys.bandsintown);
-
-
-// INQUIRER
-inquirer.prompt([
-
-    {
-        type: "input",
-        name: "name",
-        message: "Hi, what's your name?"
-    },
-
-    {
-        type: "list",
-        name: "wouldYouLikeTo",
-        message: "What would you like Liri to do?",
-        choices: ["concert-this", "spotify-this", "movie-this", "do-what-it-says"]
-    }
-
-]).then(function (user) {
-
-    // If the user chooses concert-this...
-    if (user.wouldYouLikeTo === "concert-this") {
-
-        console.log("==============================================");
-        console.log("");
-        
-        console.log("");
-        console.log("==============================================");
-        concertThis(concertThis);
-    }
-    // If user chooses spotify-this...
-    if (user.wouldYouLikeTo === "spotify-this") {
-
-        console.log("==============================================");
-        console.log("");
-        
-        console.log("");
-        console.log("==============================================");
-        spotifyThis(spotifyThis);
-    }
-    // If user chooses movie-this...
-    if (user.wouldYouLikeTo === "movie-this") {
-
-        console.log("==============================================");
-        console.log("");
-        
-        console.log("");
-        console.log("==============================================");
-        movieThis(movieThis);
-    } else {
-        // If user doesn't enter a movie name...
-        console.log("==============================================");
-        console.log("");
-        console.log("Sorry " + user.name);
-        console.log("If you haven't watched 'Mr. Nobody,' then you should!");
-        console.log("It's on Netflix!");
-        console.log("");
-        console.log("==============================================");
-        movieThis("http://www.imdb.com/title/tt0485947/");
-    }
-    // If user chooses would-you-like-to
-    if (user.wouldYouLikeTo === "do-what-it-says") {
-
-        fs.readFile("random.txt", "utf8", function (error, data) {
-            if (error) {
-                return console.log(error);
-            }
-            console.log(data);
-            var dataArr = data.split(",");
-            console.log(dataArr);
-        });
-        console.log("==============================================");
-        console.log("");
-        console.log("Well let's do it then, " + user.name);
-        console.log("");
-        console.log("==============================================");
-    }
-    spotifyThis(random.txt);
-});
+// var bands = BIT(keys.bandsintown);
 
 
+var inputString = process.argv;
 
+var userChoice = inputString[2];
+var userInput = inputString[3];
 
 // OMDB:
 function movieThis() {
 
     // Store all of the arguments in an array
     var movieThis = process.argv[2];
-    var nodeArgs = process.argv[3];
+    var userInput = process.argv[3];
 
     // Create an empty variable for holding the movie name
     var movieName = "";
 
     // Loop through all the words in the node argument
     // And do a little for-loop magic to handle the inclusion of "+"s
-    for (var i = 3; i < nodeArgs.length; i++) {
+    for (var i = 3; i <  .length; i++) {
 
-        if (i > 3 && i < nodeArgs.length) {
-            movieName = movieName + "+" + nodeArgs[i];
+        if (i > 3 && i < userInput.length) {
+            movieName = movieName + "+" + userInput[i];
         } else {
-            movieName += nodeArgs[i];
+            movieName += userInput[i];
 
         }
     }
@@ -162,19 +88,19 @@ function spotifyThis() {
 
     // Store all of the arguments in an array
     var spotifyThis = process.argv[2];
-    var nodeArgs = process.argv[3];
+    var userInput = process.argv[3];
 
     // Create an empty variable for holding the movie name
     var songName = "";
 
     // Loop through all the words in the node argument
     // And do a little for-loop magic to handle the inclusion of "+"s
-    for (var i = 3; i < nodeArgs.length; i++) {
+    for (var i = 3; i < userInput.length; i++) {
 
-        if (i > 3 && i < nodeArgs.length) {
-            songName = songName + "+" + nodeArgs[i];
+        if (i > 3 && i < userInput.length) {
+            songName = songName + "+" + userInput[i];
         } else {
-            songName += nodeArgs[i];
+            songName += userInput[i];
 
         }
     }
@@ -217,19 +143,19 @@ function concertThis() {
 
     // Store all of the arguments in an array
     var concertThis = process.argv[2];
-    var nodeArgs = process.argv[3];
+    var userInput = process.argv[3];
 
     // Create an empty variable for holding the movie name
     var bandName = "";
 
     // Loop through all the words in the node argument
     // And do a little for-loop magic to handle the inclusion of "+"s
-    for (var i = 3; i < nodeArgs.length; i++) {
+    for (var i = 3; i < userInput.length; i++) {
 
-        if (i > 3 && i < nodeArgs.length) {
-            bandName = bandName + "+" + nodeArgs[i];
+        if (i > 3 && i < userInput.length) {
+            bandName = bandName + "+" + userInput[i];
         } else {
-            bandName += nodeArgs[i];
+            bandName += userInput[i];
 
         }
     }
