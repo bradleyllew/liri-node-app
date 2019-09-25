@@ -6,10 +6,10 @@ exports.spotify = {
 };
 
 exports.omdb = {
-    id: process.env.OMDb_API
+    id: process.env.omdb
     
-}
+};
 
 exports.bandsintown = {
-    id: process.env.BIT_API
-}
+    id: process.env.bandsintown
+};

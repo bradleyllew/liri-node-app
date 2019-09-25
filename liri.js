@@ -4,20 +4,21 @@ var fs = require("fs");
 
 // var inquirer = require('inquirer');
 
-var axios = require("axios");
+var axios = require('axios');
 
 var moment = require('moment');
-
-var spotify = require('node-spotify-api');
 
 var keys = require("./keys.js");
 console.log(keys);
 
-var spotify = new spotify(keys.spotify);
+var Spotify = require('node-spotify-api');
+var spotify = new Spotify(keys.spotify);
 
-// var omdb = new omdb(keys.omdb);
+var omdb = require('omdb-client');
+// var omdb = new omdb(keys.ombd);
 
-// var bands = new BIT(keys.bandsintown);
+var bands = require('bandsintown');
+// var bands = new Bands(keys.bandsintown);
 
 
 var inputString = process.argv;
@@ -53,7 +54,7 @@ switch (userChoice) {
 
 function concertThis() {
 
-    var bandName = "";
+    var bandName = userInput;
 
     var queryUrl = bands + bandName;
 
@@ -85,9 +86,8 @@ function concertThis() {
 
 function spotifyThis() {
 
-    var songName = "";
+    var songName = userInput;
 
-    // Then run a request with axios to the OMDB API with the movie specified
     var queryUrl = spotify + songName;
 
     // This line is just to help us debug against the actual URL.
@@ -119,19 +119,19 @@ function spotifyThis() {
 
 function movieThis() {
     // Create an empty variable for holding the movie name
-    var movieName = "";
+    var movieName = userInput;
 
     // Loop through all the words in the node argument
     // And do a little for-loop magic to handle the inclusion of "+"s
-    for (var i = 3; i < userInput.length; i++) {
+    // for (var i = 3; i < userInput.length; i++) {
 
-        if (i > 3 && i < userInput.length) {
-            movieName = movieName + "+" + userInput[i];
-        } else {
-            movieName += userInput[i];
+    //     if (i > 3 && i < userInput.length) {
+    //         movieName = movieName + "+" + userInput[i];
+    //     } else {
+    //         movieName += userInput[i];
 
-        }
-    }
+    //     }
+    // }
 
     // Then run a request with axios to the OMDB API with the movie specified
     var queryUrl = omdb + movieName;
@@ -182,7 +182,7 @@ function movieThis() {
 // The second parameter is the data we want to write as a string
 // The third parameter is the callback function to be called when appendFile is finished
 // For more info, see the docs: https://nodejs.org/api/fs.html#fs_fs_appendfile_path_data_options_callback
-fs.appendFile("log.txt", "command", function (err) {
+fs.appendFile("log.txt", "", function (err) {
     // If there was an error, we log it and return immediately
     if (err) {
         return console.log(err);
