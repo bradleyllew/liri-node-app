@@ -115,19 +115,6 @@ function spotifyThis() {
 function movieThis() {
     // Create an empty variable for holding the movie name
     var movieName = userInput;
-
-    // Loop through all the words in the node argument
-    // And do a little for-loop magic to handle the inclusion of "+"s
-    // for (var i = 3; i < userInput.length; i++) {
-
-    //     if (i > 3 && i < userInput.length) {
-    //         movieName = movieName + "+" + userInput[i];
-    //     } else {
-    //         movieName += userInput[i];
-
-    //     }
-    // }
-
     // Then run a request with axios to the OMDB API with the movie specified
     var queryUrl = omdb + movieName;
 

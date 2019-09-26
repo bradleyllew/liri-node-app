@@ -31,6 +31,7 @@ This is Liri -  LIRI is like iPhone's SIRI. However, while SIRI is a Speech Inte
 
 
 #Link to a deployed version:
+    https://bradleyllew.github.io/liri-node-app/
 
 
 
