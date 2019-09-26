@@ -18,6 +18,16 @@ This is Liri -  LIRI is like iPhone's SIRI. However, while SIRI is a Speech Inte
 
 #Instructions on how to run the app:
 
+    *User types node liri.js 
+    *User then enters choice:
+        - movie-this
+        - spotify-this
+        - concert-this
+        or
+        -would-you-like-to
+    *After one of the first 3 choices, user supplies movie title, song name, or band name.  If user chose  would-you-like-to, no additional input is required.
+    *Liri then searches and returns relevant information on the requested movie/song/band
+
 
 
 #Link to a deployed version:

@@ -6,10 +6,10 @@ exports.spotify = {
 };
 
 exports.omdb = {
-    id: process.env.omdb
+    id: process.env.OMDB_KEY
     
 };
 
 exports.bandsintown = {
-    id: process.env.bandsintown
+    id: process.env.BANDS_ID
 };

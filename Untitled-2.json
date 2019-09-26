@@ -1,0 +1,200 @@
+var artist = data.tracks.items[0].artists[0].name
+{
+    "tracks": {
+        "href": "https://api.spotify.com/v1/search?query=baby+got+back&type=track&offset=0&limit=1",
+        "items": [
+            {
+                "album": {
+                    "album_type": "album",
+                    "artists": [
+                        {
+                            "external_urls": {
+                                "spotify": "https://open.spotify.com/artist/3TQ9JTBI2n2hfo7aRONEYV"
+                            },
+                            "href": "https://api.spotify.com/v1/artists/3TQ9JTBI2n2hfo7aRONEYV",
+                            "id": "3TQ9JTBI2n2hfo7aRONEYV",
+                            "name": "Sir Mix-A-Lot",
+                            "type": "artist",
+                            "uri": "spotify:artist:3TQ9JTBI2n2hfo7aRONEYV"
+                        }
+                    ],
+                    "available_markets": [
+                        "AD",
+                        "AR",
+                        "AT",
+                        "AU",
+                        "BE",
+                        "BG",
+                        "BO",
+                        "BR",
+                        "CA",
+                        "CH",
+                        "CL",
+                        "CO",
+                        "CR",
+                        "CY",
+                        "CZ",
+                        "DE",
+                        "DK",
+                        "DO",
+                        "EC",
+                        "EE",
+                        "ES",
+                        "FI",
+                        "FR",
+                        "GB",
+                        "GR",
+                        "GT",
+                        "HK",
+                        "HN",
+                        "HU",
+                        "ID",
+                        "IE",
+                        "IL",
+                        "IN",
+                        "IS",
+                        "IT",
+                        "JP",
+                        "LI",
+                        "LT",
+                        "LU",
+                        "LV",
+                        "MC",
+                        "MT",
+                        "MY",
+                        "NI",
+                        "NL",
+                        "NO",
+                        "NZ",
+                        "PA",
+                        "PE",
+                        "PH",
+                        "PL",
+                        "PT",
+                        "PY",
+                        "RO",
+                        "SE",
+                        "SG",
+                        "SK",
+                        "SV",
+                        "TH",
+                        "TR",
+                        "TW",
+                        "US",
+                        "UY",
+                        "VN",
+                        "ZA"
+                    ],
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/album/6c62jxWCe2aisIudaDRcaP"
+                    },
+                    "href": "https://api.spotify.com/v1/albums/6c62jxWCe2aisIudaDRcaP",
+                    "id": "6c62jxWCe2aisIudaDRcaP",
+                    "images": [
+                        {
+                            "height": 635,
+                            "url": "https://i.scdn.co/image/968f1997e689e2ff19441cd2120169a532d05460",
+                            "width": 640
+                        },
+                        {
+                            "height": 297,
+                            "url": "https://i.scdn.co/image/276e92ef01ec8e9f97916809efc793d24e7d66ee",
+                            "width": 300
+                        },
+                        {
+                            "height": 63,
+                            "url": "https://i.scdn.co/image/099e6c0c7560bdd9f4efca65931829e1e0f9c38c",
+                            "width": 64
+                        }
+                    ],
+                    "name": "Mack Daddy",
+                    "release_date": "1992-01-01",
+                    "release_date_precision": "day",
+                    "total_tracks": 13,
+                    "type": "album",
+                    "uri": "spotify:album:6c62jxWCe2aisIudaDRcaP"
+                },
+                "artists": [
+                    {
+                        "external_urls": {
+                            "spotify": "https://open.spotify.com/artist/3TQ9JTBI2n2hfo7aRONEYV"
+                        },
+                        "href": "https://api.spotify.com/v1/artists/3TQ9JTBI2n2hfo7aRONEYV",
+                        "id": "3TQ9JTBI2n2hfo7aRONEYV",
+                        "name": "Sir Mix-A-Lot",
+                        "type": "artist",
+                        "uri": "spotify:artist:3TQ9JTBI2n2hfo7aRONEYV"
+                    }
+                ],
+                "available_markets": [
+                    "AD",
+                    "AT",
+                    "AU",
+                    "BE",
+                    "BG",
+                    "BR",
+                    "CA",
+                    "CH",
+                    "CR",
+                    "CZ",
+                    "DE",
+                    "DK",
+                    "EC",
+                    "ES",
+                    "FI",
+                    "FR",
+                    "GB",
+                    "GR",
+                    "HK",
+                    "HU",
+                    "IE",
+                    "IL",
+                    "IN",
+                    "IS",
+                    "JP",
+                    "LI",
+                    "MC",
+                    "MY",
+                    "NL",
+                    "NO",
+                    "NZ",
+                    "PL",
+                    "PT",
+                    "RO",
+                    "SE",
+                    "SG",
+                    "SK",
+                    "TH",
+                    "TR",
+                    "TW",
+                    "US",
+                    "UY",
+                    "ZA"
+                ],
+                "disc_number": 1,
+                "duration_ms": 262826,
+                "explicit": true,
+                "external_ids": {
+                    "isrc": "USSM19100221"
+                },
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/track/1SAkL1mYNJlaqnBQxVZrRl"
+                },
+                "href": "https://api.spotify.com/v1/tracks/1SAkL1mYNJlaqnBQxVZrRl",
+                "id": "1SAkL1mYNJlaqnBQxVZrRl",
+                "is_local": false,
+                "name": "Baby Got Back",
+                "popularity": 68,
+                "preview_url": null,
+                "track_number": 3,
+                "type": "track",
+                "uri": "spotify:track:1SAkL1mYNJlaqnBQxVZrRl"
+            }
+        ],
+        "limit": 1,
+        "next": "https://api.spotify.com/v1/search?query=baby+got+back&type=track&offset=1&limit=1",
+        "offset": 0,
+        "previous": null,
+        "total": 711
+    }
+}

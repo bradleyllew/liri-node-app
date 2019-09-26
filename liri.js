@@ -1,11 +1,7 @@
 require("dotenv").config();
-
 var fs = require("fs");
-
 // var inquirer = require('inquirer');
-
 var axios = require('axios');
-
 var moment = require('moment');
 
 var keys = require("./keys.js");
@@ -14,17 +10,15 @@ console.log(keys);
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 
-var omdb = require('omdb-client');
-// var omdb = new omdb(keys.ombd);
+var omdb = keys.omdb.id;
+var bands = keys.bandsintown.id;
 
-var bands = require('bandsintown');
-// var bands = new Bands(keys.bandsintown);
 
 
 var inputString = process.argv;
 
 var userChoice = inputString[2];
-var userInput = inputString[3];
+var userInput = inputString.slice(3).join(" ");
 
 switch (userChoice) {
     case "movie-this":
@@ -90,31 +84,32 @@ function spotifyThis() {
 
     var queryUrl = spotify + songName;
 
+    var preview = "https://api.spotify.com/v1/tracks/"
+
     // This line is just to help us debug against the actual URL.
     console.log(queryUrl);
 
-    axios.get(queryUrl)
-        .then(function (response) {
-            console.log("Artist: " + response.data.artist);
-            console.log("Song Name: " + response.data.name);
-            console.log("Preview Link: " + response.data.preview_url);
-            console.log("Album: " + response.data.album);
-        })
-        .catch(function (error) {
-            if (error.response) {
-                console.log("---------------Data---------------");
-                console.log(error.response.data);
-                console.log("---------------Status---------------");
-                console.log(error.response.status);
-                console.log("---------------Status---------------");
-                console.log(error.response.headers);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log("Error", error.message);
+    spotify.search({ type: 'track', query: userInput, limit: 1}, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+        // console.log('data!', data.tracks.items[0]);
+        // console.log('data!!!', JSON.stringify(data));
+        console.log("Artist: " + data.tracks.items[0].artists[0].name);
+        console.log("Song Name: " + data.tracks.items[0].name);
+        console.log("Preview Link: " + data.tracks.items[0] + preview + songName);
+        console.log("Album: " + data.tracks.items[0].album.name);
+    });
+    if (!userInput) {
+        console.log('no user input')
+        var queryUrl = "https://api.spotify.com/v1/tracks/0hrBpAOgrt8RXigk83LLNE";
+        spotify.search({
+            type: 'track', query: queryUrl + spotify}, function (err, data) {
+            if(err) {
+                return console.log('Error occurred: ' + err);
             }
-            console.log(error.config);
         });
+    };
 };
 
 function movieThis() {
@@ -141,14 +136,16 @@ function movieThis() {
 
     axios.get(queryUrl)
         .then(function (response) {
-            console.log("Title: " + response.data.Title);
-            console.log("Release Year: " + response.data.Year);
-            console.log("IMDb Rating: " + response.data.imdbRating);
-            console.log("Rotten Tomatoes Rating: " + response.data.imdbVotes);
-            console.log("Produced in: " + response.data.Country);
-            console.log("Language: " + response.data.Language);
-            console.log("Plot: " + response.data.Plot);
-            console.log("Actors " + response.data.Actors);
+
+            var respo = response.data;
+            console.log("Title: " + respo.Title);
+            console.log("Release Year: " + respo.Year);
+            console.log("IMDb Rating: " + respo.imdbRating);
+            console.log("Rotten Tomatoes Rating: " + respo.ratings[0]);
+            console.log("Produced in: " + respo.Country);
+            console.log("Language: " + resp.Language);
+            console.log("Plot: " + respo.Plot);
+            console.log("Actors " + respo.Actors.join(", "));
         })
         .catch(function (error) {
             if (error.response) {
